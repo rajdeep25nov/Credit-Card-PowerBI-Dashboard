@@ -36,7 +36,7 @@ To develop a comprehensive dashboard that helps monitor and analyze weekly trend
 
 The project utilizes two datasets:
 
-- **cc_detail.csv** – Weekly credit card transaction details
+- **creditcard.csv** – Weekly credit card transaction details
 - **customer.csv** – Customer demographic and financial data
 
 Key fields include:
