@@ -1,56 +1,71 @@
-# Credit Card Financial Dashboard
+# 💳 Credit Card Financial Dashboard – Power BI
 
-This project involves the development of a comprehensive **Credit Card Financial Dashboard** using **Power BI**, with data sourced from a **SQL database**. The dashboard is designed to provide **real-time insights** into key performance metrics and trends to support data-driven decision-making for credit card operations.
+This project showcases a **Credit Card Financial Dashboard** built using **Power BI**, powered by customer and transaction data from a **PostgreSQL database**. The dashboard provides **real-time insights** into key financial and operational metrics, enabling stakeholders to make informed decisions.
 
 ---
 
-## 📊 Project Objective
+## 🎯 Objective
 
-To create a user-friendly and dynamic dashboard that helps stakeholders monitor credit card operations through interactive visualizations and real-time analytics.
+To develop a comprehensive dashboard that helps monitor and analyze weekly trends in credit card usage, customer behavior, and financial performance.
 
 ---
 
 ## 🛠️ Tools & Technologies
 
-- **Power BI** – for dashboard design and data visualization
-- **SQL Server** – for data extraction and querying
-- **DAX (Data Analysis Expressions)** – for creating calculated columns and measures
+- **Power BI** – for interactive visualizations and reporting
+- **PostgreSQL (SQL)** – for data storage, querying, and management
+- **DAX (Data Analysis Expressions)** – for calculated columns, KPIs, and custom measures
 - **Power Query** – for data cleaning and transformation
 
 ---
 
 ## 📈 Key Features
 
-- **Interactive Dashboard:** Drill-down capabilities to analyze data weekly, by customer segment, region, or transaction type.
-- **Real-time KPIs:** Visual tracking of key metrics like:
-  - Total transaction volume
-  - Average spend per customer
-  - Approval and rejection rates
-  - Customer activity trends
-- **Filters & Slicers:** Flexible filtering by time period, customer type, and card type for custom analysis.
-- **Automated Refresh:** Integrated data pipelines for seamless updates with minimal manual effort.
+- 📊 **Interactive Dashboard** – Drill-down features and dynamic slicers for detailed analysis
+- 🧮 **KPI Tracking** – Metrics like:
+  - Total Transaction Volume
+  - Average Spend per Customer
+  - Approval & Rejection Rates
+  - Credit Utilization Ratio
+- 🔄 **Automated Data Refresh** – Using Power Query to enable efficient data loading
+- 📍 **Custom Filters** – Time-based, demographic-based, and card-type-based filters for user-specific insights
 
 ---
 
 ## 📁 Data Overview
 
-> **Note:** Sample or anonymized data used to preserve privacy. If you're viewing this as a template, replace with your own dataset.
+The project utilizes two datasets:
 
-- **Transaction Table:** Transaction ID, Date, Amount, Card Type, Status
-- **Customer Table:** Customer ID, Region, Age Group, Credit Score, Account Status
+- **cc_detail.csv** – Weekly credit card transaction details
+- **customer.csv** – Customer demographic and financial data
+
+Key fields include:
+- `Total_Trans_Amt`, `Total_Trans_Ct`, `Credit_Limit`, `Card_Category`, `Customer_Age`, `Income`, `Customer_Job`, etc.
+
+---
+
+## 🧠 Insights & Impact
+
+- Enabled stakeholders to track and respond to usage patterns, customer behavior, and high-risk accounts.
+- Identified spending trends and approval rates, supporting credit policy adjustments.
+- Improved reporting efficiency with automated refresh and clean visual storytelling.
 
 ---
 
 ## 📌 Use Cases
 
-- Monitor and optimize **credit card usage and customer engagement**
-- Track **approval trends and spending behavior**
-- Identify **regions or periods** with unusual activity or performance drops
-- Provide stakeholders with **self-service BI insights**
+- Business performance tracking across time and customer segments
+- Identifying growth opportunities or risk zones in card usage
+- Financial planning and resource allocation
 
 ---
-Below are the SQL scripts used to set up the database, create tables, and import CSV data into PostgreSQL:
 
+## 💻 SQL Setup & Data Import
+
+<details>
+<summary><strong>SQL Queries to Create Tables and Import Data</strong></summary>
+
+```sql
 -- 0. Create a new database
 CREATE DATABASE ccdb;
 
@@ -95,27 +110,21 @@ CREATE TABLE cust_detail (
     Cust_Satisfaction_Score INT
 );
 
--- 3. Import data from CSV files (update path based on your system)
--- cc_detail table
+-- 3. Import data from CSV (update file paths)
 COPY cc_detail
 FROM 'D:\credit_card.csv' 
 DELIMITER ',' 
 CSV HEADER;
 
--- cust_detail table
 COPY cust_detail
 FROM 'D:\customer.csv' 
 DELIMITER ',' 
 CSV HEADER;
 
--- ✅ Tip: If you encounter the error below:
--- ERROR:  date/time field value out of range: "0"
--- HINT: Perhaps you need a different "datestyle" setting.
-
--- Try this before the COPY command:
+-- Optional: Handle date format errors
 SET datestyle TO 'ISO, DMY';
 
--- 4. Insert additional weekly data
+-- 4. Import additional weekly data
 COPY cc_detail
 FROM 'D:\cc_add.csv' 
 DELIMITER ',' 
@@ -125,20 +134,3 @@ COPY cust_detail
 FROM 'D:\cust_add.csv' 
 DELIMITER ',' 
 CSV HEADER;
-
-
-## 🧠 Learnings & Impact
-
-- Applied advanced **DAX** formulas to derive performance KPIs
-- Built automated, refreshable workflows using **Power Query**
-- Improved stakeholder decision-making through **visual storytelling and data transparency**
-
----
-
-## 📷 Screenshots
-
-> *(Include visuals of your dashboard here — upload PNG or JPEG files and use the following markdown to embed them)*
-
-```markdown
-![Dashboard Overview](images/dashboard-overview.png)
-![Customer Insights](images/customer-insights.png)
